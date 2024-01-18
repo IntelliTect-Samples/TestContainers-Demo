@@ -30,20 +30,6 @@ jobs:
             ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
             ${{ runner.os }}-nuget-
 
-      - name: Get npm cache directory
-        id: npm-cache-dir
-        run: echo "dir=$(npm config get cache)" >> ${env:GITHUB_OUTPUT}
-
-      - name: Set up npm dependency caching for faster builds if not already restored
-        uses: actions/cache@v3
-        id: npm-cache
-        with:
-          path: ${{ steps.npm-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-            ${{ runner.os }}-node-
-
       - name: Restore with dotnet
         run: dotnet restore
 
