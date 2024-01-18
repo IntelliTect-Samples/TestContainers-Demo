@@ -7,14 +7,16 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="coverlet.collector" Version="6.0.0" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+    <PackageVersion Include="GitHubActionsTestLogger" Version="2.3.3" />
+    <PackageVersion Include="IntelliTect.Coalesce.Vue" Version="$(CoalesceVersion)" />
+    <PackageVersion Include="IntelliTect.Coalesce" Version="$(CoalesceVersion)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
-    <PackageVersion Include="IntelliTect.Coalesce" Version="$(CoalesceVersion)" />
-    <PackageVersion Include="IntelliTect.Coalesce.Vue" Version="$(CoalesceVersion)" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.4" />
+    <PackageVersion Include="Testcontainers.MsSql" Version="3.7.0" />
     <PackageVersion Include="xunit.extensibility.core" Version="2.6.2" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.4" />
     <PackageVersion Include="xunit" Version="2.6.2" />
   </ItemGroup>
 </Project>

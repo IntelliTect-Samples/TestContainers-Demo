@@ -1,10 +1,31 @@
-namespace IntelliTect.TestContainersDemo.Tests;
+using DotNet.Testcontainers.Containers;
+using Testcontainers.MsSql;
 
-public class UnitTest1
+namespace Customers.Tests;
+
+public sealed class CustomerServiceTest : IAsyncLifetime
 {
-    [Fact]
-    public void Test1()
-    {
+    private readonly MsSqlContainer _sqlContainer = new MsSqlBuilder()
+        .Build();
 
+    public Task InitializeAsync()
+    {
+        return _sqlContainer.StartAsync();
+    }
+
+    public Task DisposeAsync()
+    {
+        return _sqlContainer.DisposeAsync().AsTask();
+    }
+
+    [Fact]
+    public void ShouldReturnTwoCustomers()
+    {
+        // Arrange
+
+        // Act
+
+        // Assert
+        Assert.Equal(TestcontainersStates.Running, _sqlContainer.State);
     }
 }
