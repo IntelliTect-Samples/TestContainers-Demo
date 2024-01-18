@@ -1,0 +1,16 @@
+{
+  "webProject": {
+    "projectFile": "./IntelliTect.TestContainersDemo.Web/IntelliTect.TestContainersDemo.Web.csproj"
+  },
+  "dataProject": {
+    "projectFile": "./IntelliTect.TestContainersDemo.Data/IntelliTect.TestContainersDemo.Data.csproj"
+  },
+
+  "rootGenerator": "Vue",
+
+  "generatorConfig": {
+    "Scripts": {
+      "targetDirectory": "../src"
+    }
+  }
+}
