@@ -1,0 +1,56 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+    pull_request:
+    workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Set up nuget dependency caching for faster builds
+        uses: actions/cache@v3
+        id: nuget-cache
+        with:
+          path: |
+            ~/.nuget/packages
+            ${{ github.workspace }}/**/obj/project.assets.json
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+            ${{ runner.os }}-nuget-
+
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        run: echo "dir=$(npm config get cache)" >> ${env:GITHUB_OUTPUT}
+
+      - name: Set up npm dependency caching for faster builds if not already restored
+        uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            ${{ runner.os }}-node-
+
+      - name: Restore with dotnet
+        run: dotnet restore
+
+      - name: Build with dotnet
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run .NET Unit Tests
+        run:
+          dotnet test --no-build --configuration Release --logger GitHubActions --
+          RunConfiguration.CollectSourceInformation=true
