@@ -1,5 +1,4 @@
 
-using IntelliTect.TestContainersDemo.Web.Models;
 using IntelliTect.Coalesce;
 using IntelliTect.Coalesce.Api;
 using IntelliTect.Coalesce.Api.Behaviors;
@@ -9,6 +8,7 @@ using IntelliTect.Coalesce.Mapping;
 using IntelliTect.Coalesce.Mapping.IncludeTrees;
 using IntelliTect.Coalesce.Models;
 using IntelliTect.Coalesce.TypeDefinition;
+using IntelliTect.TestContainersDemo.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
